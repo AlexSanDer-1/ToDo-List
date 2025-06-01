@@ -1,4 +1,44 @@
 package sander.ToDo_List.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import sander.ToDo_List.dto.TarefaDTO;
+import sander.ToDo_List.modelo.Tarefa;
+import sander.ToDo_List.repository.TarefaRepository;
+
+import java.util.List;
+
+@Service
 public class TarefaService {
+
+    @Autowired
+    private TarefaRepository repository;
+
+
+    private  List<Tarefa> list(){
+      Sort sort = Sort.by(Sort.Direction.DESC,"prioridade")
+                .and(Sort.by(Sort.Direction.ASC,"id"));
+     return repository.findAll(sort);
+    }
+
+    private List<Tarefa> criarTarefa(TarefaDTO dto){
+
+        Tarefa tarefa = new Tarefa(dto);
+        repository.save(tarefa);
+        return list();
+    }
+    private List<Tarefa> updateTarefa(Long id,TarefaDTO dto){
+       Tarefa tarefaUp =  repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+
+       tarefaUp.setNome(dto.nome());
+       tarefaUp.setDescricao(dto.descricao());
+       tarefaUp.setPrioridade(dto.prioridade());
+
+        repository.save(tarefaUp);
+        return list();
+    }
+
+
 }

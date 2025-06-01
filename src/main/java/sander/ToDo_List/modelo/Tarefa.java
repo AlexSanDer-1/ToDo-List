@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sander.ToDo_List.dto.TarefaDTO;
 
 @Entity
 @Table(name = "tarefas")
@@ -21,4 +22,17 @@ public class Tarefa{
     private Status status;
     private String prioridade;
 
+
+    public Tarefa(TarefaDTO dto) {
+        this.nome = dto.nome();
+        this.descricao = dto.descricao();
+        this.prioridade = dto.prioridade();
+    }
+
+    public Tarefa(String nome, String descricao, Status status, String prioridade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.status = Status.PENDENTE;
+        this.prioridade = prioridade;
+    }
 }
