@@ -24,7 +24,7 @@ public class TarefaService {
     }
 
 
-    private  Tarefa carregarTarefa(Long id,TarefaDTO dto){
+    private  Tarefa carregarTarefa(Long id){
          return  repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
     }
@@ -37,7 +37,7 @@ public class TarefaService {
     }
     private List<Tarefa> updateTarefa(Long id,TarefaDTO dto){
 
-       Tarefa tarefaUp =  carregarTarefa(id,dto);
+       Tarefa tarefaUp =  carregarTarefa(id);
 
        tarefaUp.setNome(dto.nome());
        tarefaUp.setDescricao(dto.descricao());
@@ -46,8 +46,12 @@ public class TarefaService {
         repository.save(tarefaUp);
         return list();
     }
-    private List<Tarefa> cancelarTarefa(Long id,TarefaDTO dto){
+    private List<Tarefa> cancelarTarefa(Long id){
 
+         Tarefa tarefa = carregarTarefa(id);
+         tarefa.setStatus(Status.CANCELADO);
 
+         repository.save(tarefa);
+         return list();
     }
 }
