@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import sander.ToDo_List.dto.TarefaDTO;
+import sander.ToDo_List.modelo.Status;
 import sander.ToDo_List.modelo.Tarefa;
 import sander.ToDo_List.repository.TarefaRepository;
 
@@ -22,15 +23,21 @@ public class TarefaService {
      return repository.findAll(sort);
     }
 
-    private List<Tarefa> criarTarefa(TarefaDTO dto){
 
+    private  Tarefa carregarTarefa(Long id,TarefaDTO dto){
+         return  repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+    }
+
+    private List<Tarefa> criarTarefa(TarefaDTO dto){
         Tarefa tarefa = new Tarefa(dto);
+        tarefa.setStatus(Status.REALIZADO);
         repository.save(tarefa);
         return list();
     }
     private List<Tarefa> updateTarefa(Long id,TarefaDTO dto){
-       Tarefa tarefaUp =  repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+
+       Tarefa tarefaUp =  carregarTarefa(id,dto);
 
        tarefaUp.setNome(dto.nome());
        tarefaUp.setDescricao(dto.descricao());
@@ -39,6 +46,8 @@ public class TarefaService {
         repository.save(tarefaUp);
         return list();
     }
+    private List<Tarefa> cancelarTarefa(Long id,TarefaDTO dto){
 
 
+    }
 }
