@@ -1,6 +1,5 @@
 package sander.ToDo_List.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,5 +19,12 @@ public class TarefaController {
       return ResponseEntity.status(HttpStatus.CREATED)
               .body(tarefaService.criarTarefa(dto));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity  carregarUnicaTarefa(@PathVariable Long id){
+
+        return ResponseEntity.ok(tarefaService.carregarTarefa(id));
+    }
+
 
 }
