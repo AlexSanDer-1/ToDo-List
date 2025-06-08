@@ -47,7 +47,7 @@ public class TarefaService {
         repository.save(tarefaUp);
         return list();
     }
-    private List<Tarefa> cancelarTarefa(Long id){
+    public List<Tarefa> cancelarTarefa(Long id){
 
          Tarefa tarefa = carregarTarefa(id);
          tarefa.setStatus(Status.CANCELADO);
