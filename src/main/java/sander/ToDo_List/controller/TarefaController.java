@@ -5,7 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sander.ToDo_List.dto.TarefaDTO;
+import sander.ToDo_List.modelo.Tarefa;
 import sander.ToDo_List.service.TarefaService;
+
+import java.util.List;
 
 @RequestMapping("/tarefa")
 @RestController
@@ -22,8 +25,12 @@ public class TarefaController {
 
     @GetMapping("/{id}")
     public ResponseEntity  carregarUnicaTarefa(@PathVariable Long id){
-
         return ResponseEntity.ok(tarefaService.carregarTarefa(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Tarefa>> list(){
+        return ResponseEntity.ok(tarefaService.list());
     }
 
 
