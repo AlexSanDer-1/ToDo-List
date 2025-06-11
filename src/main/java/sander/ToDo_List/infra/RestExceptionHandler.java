@@ -1,6 +1,5 @@
 package sander.ToDo_List.infra;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(ValidacaoError.class)
     public ResponseEntity<RestErrorMessage> validacaoTarefa(ValidacaoError ex){
         RestErrorMessage  capturaError = new RestErrorMessage(HttpStatus.BAD_REQUEST,ex.getMessage());
-        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(capturaError);
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(capturaError);
     }
 
 }
