@@ -15,4 +15,11 @@ public class RestExceptionHandler {
           RestErrorMessage  capturaError = new RestErrorMessage(HttpStatus.NOT_FOUND,ex.getMessage());
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(capturaError);
     }
+
+    @ExceptionHandler(ValidacaoError.class)
+    public ResponseEntity<RestErrorMessage> validacaoTarefa(ValidacaoError ex){
+        RestErrorMessage  capturaError = new RestErrorMessage(HttpStatus.BAD_REQUEST,ex.getMessage());
+        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(capturaError);
+    }
+
 }
