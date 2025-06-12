@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import sander.ToDo_List.dto.TarefaDTO;
+import sander.ToDo_List.dto.TarefaUP;
 import sander.ToDo_List.infra.ValidacaoError;
 import sander.ToDo_List.modelo.Status;
 import sander.ToDo_List.modelo.Tarefa;
@@ -36,13 +37,13 @@ public class TarefaService {
         repository.save(tarefa);
         return list();
     }
-    public List<Tarefa> updateTarefa(Long id,TarefaDTO dto){
+    public List<Tarefa> updateTarefa(Long id, TarefaUP up){
 
        Tarefa tarefaUp =  carregarTarefa(id);
 
-       tarefaUp.setNome(dto.nome());
-       tarefaUp.setDescricao(dto.descricao());
-       tarefaUp.setPrioridade(dto.prioridade());
+       tarefaUp.setNome(up.nome());
+       tarefaUp.setDescricao(up.descricao());
+       tarefaUp.setPrioridade(up.prioridade());
 
         repository.save(tarefaUp);
         return list();

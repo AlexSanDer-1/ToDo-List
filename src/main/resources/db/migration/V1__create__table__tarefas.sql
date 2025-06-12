@@ -3,5 +3,5 @@ CREATE TABLE tarefas(
      nome VARCHAR(255) NOT NULL,
      descricao VARCHAR(255) NOT NULL,
      Status VARCHAR(50) NOT NULL,
-     prioridade VARCHAR(255) NOT NULL,
+     prioridade VARCHAR(255) NOT NULL
 )

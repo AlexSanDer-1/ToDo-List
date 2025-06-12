@@ -33,11 +33,11 @@ public class TarefaController {
         return ResponseEntity.ok(tarefaService.list());
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/update")
     public  ResponseEntity updateTarefa(@PathVariable Long id,@RequestBody TarefaDTO dto){
         return ResponseEntity.ok(tarefaService.updateTarefa(id,dto));
     }
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/cancelar")
     public  ResponseEntity cancelarTarefa(@PathVariable Long id){
         return  ResponseEntity.ok(tarefaService.cancelarTarefa(id));
     }
