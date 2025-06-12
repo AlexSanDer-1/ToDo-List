@@ -1,16 +1,14 @@
 package sander.ToDo_List.modelo;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import sander.ToDo_List.dto.TarefaDTO;
 
 @Entity
 @Table(name = "tarefas")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tarefa{

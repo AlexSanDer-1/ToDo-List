@@ -1,7 +1,7 @@
 CREATE TABLE tarefas(
      id BIGINT AUTO_INCREMENT PRIMARY KEY,
-     nome VARCHAR(255) NOT NULL,
-     descricao VARCHAR(255) NOT NULL,
-     Status VARCHAR(50) NOT NULL,
-     prioridade VARCHAR(255) NOT NULL
+     nome VARCHAR(255),
+     descricao VARCHAR(255),
+     Status VARCHAR(50),
+     prioridade VARCHAR(255)
 )

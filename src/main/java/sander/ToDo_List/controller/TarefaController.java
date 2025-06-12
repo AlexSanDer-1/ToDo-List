@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sander.ToDo_List.dto.TarefaDTO;
+import sander.ToDo_List.dto.TarefaUP;
 import sander.ToDo_List.modelo.Tarefa;
 import sander.ToDo_List.service.TarefaService;
 
@@ -34,8 +35,8 @@ public class TarefaController {
     }
 
     @PutMapping("/{id}/update")
-    public  ResponseEntity updateTarefa(@PathVariable Long id,@RequestBody TarefaDTO dto){
-        return ResponseEntity.ok(tarefaService.updateTarefa(id,dto));
+    public  ResponseEntity updateTarefa(@PathVariable Long id,@RequestBody TarefaUP up){
+        return ResponseEntity.ok(tarefaService.updateTarefa(id,up));
     }
     @PutMapping("/{id}/cancelar")
     public  ResponseEntity cancelarTarefa(@PathVariable Long id){

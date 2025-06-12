@@ -39,13 +39,15 @@ public class TarefaService {
     }
     public List<Tarefa> updateTarefa(Long id, TarefaUP up){
 
-       Tarefa tarefaUp =  carregarTarefa(id);
+       Tarefa tarefaEntity =  carregarTarefa(id);
+       Tarefa tarefaAtualizada = Tarefa.builder()
+               .id(tarefaEntity.getId())
+               .nome(up.nome() != null ? up.nome() : tarefaEntity.getNome())
+               .descricao(up.descricao() != null ? up.descricao() : tarefaEntity.getDescricao())
+               .prioridade(up.prioridade() != null ? up.prioridade() : tarefaEntity.getPrioridade())
+               .build();
 
-       tarefaUp.setNome(up.nome());
-       tarefaUp.setDescricao(up.descricao());
-       tarefaUp.setPrioridade(up.prioridade());
-
-        repository.save(tarefaUp);
+        repository.save(tarefaAtualizada);
         return list();
     }
     public List<Tarefa> cancelarTarefa(Long id){
